@@ -1,0 +1,60 @@
+#1st_class
+
+uniform deviates
+
+
+non- uniform  1. gaussian , 2. exponential
+
+
+"Transformation Method "
+y = -ln(x)
+p(y) = mod ( dy/dx )* P(x)
+
+"Box Muller Method"
+y1= np.sqrt(-2*np.log(x))* np.cos(2*np.pi*  x1)
+
+"Rejection Method" ->
+
+**Test of randomness - 
+#2nd class 
+
+random number in curvilinear space 
+Pearson paper(1900)
+chi square test 
+KS test 
+
+"Frequentist Statistics"
+prob. is might not equal to freq. ..  ,  .. fundamentally worng to assign the freq. in every time
+
+Bayesian Statistics
+
+
+#3rd class 
+
+Monte Carlo integration
+I/A = k/N    ............k = selected pt.s , N = total pt.s  , probility of sucess = I/A
+\sigma = variance = sqrt(var(k))*A/N = sqrt (I(A-I)/N)
+
+# Mean value Method
+integration of any f(x) = I = Mean of f(x)* (b - a)
+variance = (b-a) sqrt(var(f)/N)
+#Importance sampling 
+diverge func. have a problem 
+I = ave( f(x/w(x))) / int (dx w(x))
+from N random no. , pnts are in func -> probility\= V*p(x) dx
+#optimization sampling 
+MCMC Method - it gives us random numbers from a func
+
+#4th class
+
+"probilistic inference"
+data <-> model
+data = x , f(x) , sigma(y)
+
+baseyian 
+Monte Carlo algorithm of probilistic inference
+P(i th data = yi)   ... Generated model 
+liklihood 
+
+
+
