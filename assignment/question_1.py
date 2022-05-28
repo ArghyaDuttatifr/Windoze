@@ -18,7 +18,7 @@ for i in range (n):
     r.append(x/(m-1))
     num.append(i)
 #print(r)
-plt.hist( r, bins=50 )
+plt.hist( r,density=True, bins=50 )
 plt.grid()
 
 plt.show()

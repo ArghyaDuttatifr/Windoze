@@ -1,4 +1,6 @@
 #Question_9
+#take help from https://towardsdatascience.com/bayesian-statistics-metropolis-hastings-from-scratch-in-python-c3b10cc4382d
+
 import numpy as np
 from scipy import random
 import matplotlib.pyplot as plt
