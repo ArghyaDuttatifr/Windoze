@@ -19,7 +19,7 @@ for i in range (n):
     num.append(i)
 #print(r)
 plt.hist( r, bins=50 )
-
+plt.grid()
 
 plt.show()
 
