@@ -53,3 +53,12 @@ for i in range(ndim):
 axes[-1].set_xlabel("step number");
 plt.show()
 
+
+flat_samples = sampler.get_chain(discard=100, thin=15, flat=True)
+print(flat_samples.shape)
+
+import corner
+
+fig = corner.corner(
+    flat_samples, labels=labels,truths=[a_true , b_true, c_true] )
+plt.show()

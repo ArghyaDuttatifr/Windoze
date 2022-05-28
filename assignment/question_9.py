@@ -49,3 +49,8 @@ plt.hist(dist,bins=20, density=True)
 plt.plot(lines, curve) 
 plt.grid()
 plt.show()
+
+
+
+
+
