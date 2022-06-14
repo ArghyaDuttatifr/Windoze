@@ -1,20 +1,24 @@
-#%%
+
 #forced oscillation
 import math  as m
 from numpy import arange
+import numpy as np
 import matplotlib.pyplot as plt
+from scipy.fftpack import fft, ifft
+from scipy import fftpack
+
 alpha = 0.2
 # y' = u
 # u' = -y
 
 def F(y, u, x):
-    return -y + m.sin(x)+alpha * u
+    return -y +  alpha *u**2 - 0.5*u
 
 
 
 xi = 0
 xf = 50.0                 #initial and final points
-N =1000
+N =10000
 h = (xf-xi)/N
 
 
@@ -50,9 +54,13 @@ plt.grid(True)
 plt.title(' Damped hermonic oscillator')
 plt.xlabel('Time (t)', size='15')
 plt.axhline (y=0, color = 'r')
-#plt.plot(xpoints, ypoints, 'g', label = 'oscillation curve', lw=1)
-plt.plot(ypoints, upoints, 'b', label = 'oscillation curve', lw=1)
-
+plt.plot(xpoints, ypoints, 'g', label = 'oscillation curve', lw=1)
+#plt.plot(ypoints, upoints, 'b', label = 'oscillation curve', lw=1)
+X = fft(ypoints)
+X_mag = np.abs(X)/2000
+f_p = xpoints[0: 5001]
+X_mag_p = 2 * X_mag[0:5001] 
+plt.plot(f_p, X_mag_p , '.-')
 plt.legend()
 plt.show()
 
@@ -63,7 +71,7 @@ plt.show()
 
 
 
-
+'''
 #%%
 import matplotlib.pyplot as plt
 import numpy as np
@@ -112,6 +120,6 @@ plt.title("Amplitude & Velocity Resonance")
 
 
 
-
+'''
 
 
