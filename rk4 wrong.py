@@ -1,19 +1,20 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import math as m
 
 def fun(t,x):
     # This is the right-hand side of the first-order ordinary differential 
     # equation dx/dt = fun.
 #    fun = 3*t**2 
-    fun = x**2 +t
+    fun = m.exp(-0.25*x*(t-1)**2)
     return fun
     
 # Set initial conditions.
 t = 0
-x = 0.02
+x = 0.2
 
 # Set initial step size.
-dt = 1e-1
+dt = 1e-2
 
 # Set minimal step size.
 dt_min = 1e-3
@@ -22,7 +23,7 @@ dt_min = 1e-3
 dx_max = 0.01  # Enables faster speed.
 dx_min = 0.008 # Controls accuracy.
 x_tol = 1e-3
-nag=[0]*4000
+nag= [0]*4000
 for i in range (0,50):
     
     # Calculate partial steps.
@@ -67,6 +68,7 @@ for i in range (0,50):
     nag[i] = new_x
     t = t + dt
     
-xx=np.linspace(0,0.1,4000)
+xx=np.linspace(0,1,4000)
 plt.plot(xx,nag)
+plt.show()
 

@@ -55,7 +55,8 @@ plt.grid(True)
 plt.xlabel('x')
 plt.ylabel('y')
 plt.legend()
-
+plt.show()
+'''
 #%% shoot the y vlaue according to the solution
 
 import numpy as np
@@ -101,5 +102,5 @@ plt.xlabel('x')
 plt.ylabel('y')
 plt.legend()
 
-
+'''
 

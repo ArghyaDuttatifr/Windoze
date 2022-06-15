@@ -24,7 +24,7 @@ M1 = diags([Dm1, D, D1], [-1, 0, 1], shape = (N, N), format = 'csc')
 #  Divide through by 1/Delta**2 prefactor
 M1 = M1 / Delta**2
 
-#  Reset the elements corrisponding to the boundary values
+#  Reset the elements corresponding to the boundary values
 M1[0, 0] = 0
 M1[0, 1] = 0
 M1[-1, -1] = 0
@@ -50,3 +50,4 @@ plt.grid(True)
 plt.legend()
 plt.xlabel('x')
 plt.ylabel('y')
+plt.show()

@@ -37,7 +37,7 @@ def function(theta ,yf, v, t0, xf, h):
         i += 1
     return u[2]-yf
 
-theta = np.pi/180 * 34
+theta = np.pi/180 * 20
 v = 71*1000/3600    #in meter / sec
 xf = np.sqrt (22**2 + 3.36**2)
 yf = 2.14
@@ -54,7 +54,7 @@ for i in range(len(velocity)) :
 plt.plot(velocity,thetas,  linewidth=1, color='r')
 plt.grid()
 plt.ylabel('\u03B8(in Radian )')
-plt.title('Variation oh angle with velocity')
+plt.title('Variation of angle with velocity')
 plt.xlabel('Velocity(m/s)')
 plt.show()
 

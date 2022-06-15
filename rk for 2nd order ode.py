@@ -4,7 +4,7 @@ Created on Thu Mar 10 01:42:00 2022
 
 @author: arghy
 """
-
+#rk4 for bvp https://scicomp.stackexchange.com/questions/21060/runge-kutta-simulation-for-projectile-motion-with-drag
 
 #forced oscillation
 import math  as m

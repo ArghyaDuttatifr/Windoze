@@ -1,0 +1,1 @@
+lines = f.read().splitlines()

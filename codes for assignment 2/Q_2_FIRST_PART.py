@@ -27,6 +27,7 @@ for k in b:
 # defining the potential function
     def pot(x):
         return k*(x**2)/2 + x**4/24
+        
 # defining the potential energy matrix
     for i in range(N):
         for j in range(N):
