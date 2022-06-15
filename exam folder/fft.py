@@ -7,7 +7,7 @@ a) Explore the phase diagram for the non-driven system, A=0.
 . Start from the initial position
 θ(0), v(0) = dθ
 dt(0) ≡ (1.1, −0.1).'''
-from scipy.fftpack import fft, ifft
+from scipy.fftpack import fft
 from scipy import fftpack
 
 import math  as m
@@ -41,7 +41,7 @@ mask = freq>0
 fft_t = 2.0 * np.abs(fft(r)/2000)
 ''' 
 
-fig, axs = plt.subplots(nrows=2, ncols=1, sharex=True)
+fig, axs = plt.subplots(nrows=2, ncols=1, sharex=True)   #[ax1, ax2]
 ax = axs[0]
 ax.plot(t, r , 'g' , label = ' time vs r' , lw = 2)
 ax.set_title('t vs r')
