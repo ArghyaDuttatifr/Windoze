@@ -1,4 +1,4 @@
-import matplotlib.pyplot as plt
+'''import matplotlib.pyplot as plt
 import numpy as np
 
 def f(x):
@@ -29,4 +29,9 @@ ax[1].set_xlim([-6,6])
 ax[1].set_ylim([0,1])
 ax[0].plot(xarr,sampled_data,'r.')
 ax[0].plot(x_points,f(x_points),c='b',alpha=0.4)
-plt.show()
+plt.show()'''
+import numpy as np 
+x = np.log(2)
+print (np.sin(-x))
+
+
