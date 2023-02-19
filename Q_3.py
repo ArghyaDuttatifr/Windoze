@@ -1,126 +1,59 @@
-#QUESTION 3
-#PART A
-#libraries
-import numpy as np
+import numpy, matplotlib
 import matplotlib.pyplot as plt
-from scipy.linalg import eigh
+
+polynomialOrder = 1 # example quadratic
+import numpy as np
+import pylab
+import matplotlib.pyplot as plt
+from scipy.stats import linregress
 
 
-'''Importing the corr.dat file'''
-data = np.loadtxt(r'E:\1.physics TIFR\Comp. Phys\corr.dat')
-t= data[:,0]     # time in seconds
-corr= data[:,1]      # values of measurement of correlation fn at different times
+x=[26.835, 30.003, 31.962, 39.875]
+y=[1517, 1533, 1549, 1571]
 
-n2=50 #"measurements" of the correlation function
-n1=96  # observation number , ranges 0 to 95
+yData =np.log(x)
+xData =np.log(y)
 
-mean =[]
-C_M =[] 
-T =[]    #time 
-var1 = []
-var2 = []
-rms= []
-m_u= []
-error_u = []
+# curve fit the test data
+fittedParameters = numpy.polyfit(xData, yData, polynomialOrder)
+print('Fitted Parameters:', fittedParameters)
 
-cov1=[]
+modelPredictions = numpy.polyval(fittedParameters, xData)
+absError = modelPredictions - yData
+
+SE = numpy.square(absError) # squared errors
+MSE = numpy.mean(SE) # mean squared errors
+RMSE = numpy.sqrt(MSE) # Root Mean Squared Error, RMSE
+Rsquared = 1.0 - (numpy.var(absError) / numpy.var(yData))
+print('RMSE:', RMSE)
+print('R-squared:', Rsquared)
+
+print()
 
 
+##########################################################
+# graphics output section
+def ModelAndScatterPlot(graphWidth, graphHeight):
+    f = plt.figure(figsize=(graphWidth/100.0, graphHeight/100.0), dpi=100)
+    axes = f.add_subplot(111)
 
-#Creating the matrix 
-C=np.zeros([n1, n2])
-for i in range(n2):
-    for j in range(n1):
-        C[j][i]=corr[j+ 96*i]   # as the values for same t after 96 values
-        C_M.append(C[j][i])
-                    
-#print (C_M) 
-#print (C) 
-for i in range(n1):
-    T.append(t[i])
-#Now calculate the mean and variance(by 2nd formula )
+    # first the raw data as a scatter plot
+    axes.plot(xData, yData,  'D')
 
-m = np.zeros(96)  #row of 96 element
-m2 = np.zeros(96)  
-m3 = np.zeros(96)  
-v = np.zeros(96)
-s = np.zeros(96)
-for i in range(96):
-    for j in range (n2):
-        m[i] += C[i][j]
-        #m2[i] += C[i][j]
-        v[i] += (C[i][j])**2
-        
-    mean.append (m[i]/50)
-    var2.append(( v[i])/50 - (mean[i])**2 )
-    rms.append(((var2[i])/49)**(1/2))
-#variance by 1st formula   
-for i in range(n1):
-    for j in range(n2):
-        m2[i]+= (C[i][j] - mean[i] )**2
-    var1.append(m2[i]/50)   
-#print ('Variance using 1 st formula ', var1)
-#print ('Variance using 2 nd formula ', var2)
-plt.plot( T, rms )
-'''plt.plot( T,mean )
-plt.plot( T, var1 )
-plt.title( 'Mean changes with time ')
-plt.ylabel('mean and variance', fontdict = font)'''
+    # create data for the fitted equation plot
+    xModel = numpy.linspace(min(xData), max(xData))
+    yModel = numpy.polyval(fittedParameters, xModel)
 
-plt.xlabel('Time ', fontdict = font )
-plt.ylabel('RMS VALUE', fontdict = font)
-plt.title( 'RMS Value changes with time ', size = '15')
-#plt.plot( T, var2)
-plt.yscale("log") 
-#plt.legend(["Mean", "Variance"]) 
-#print ('var2 ', var2)
-#print ('var1', var1)
-plt.legend(["rms value"])
- 
-##
-# To get Mean and Variance in a single loop
+    # now the model as a line plot
+    axes.plot(xModel, yModel)
+    plt.title('Curve Fit of log(q) vs log(V) ')
+    axes.set_xlabel('log(V)') # X axis data label
+    axes.set_ylabel('log(q)') # Y axis data label
+    plt.legend(['Data points','log(q) = 10.99393403 * log(V) -77.24698074'])
+    plt.show()
+    axes.grid()
+    plt.close('all') # clean up after using pyplot
 
-for i in range (0,96):
-    mean1=0
-    var=0
-    count=0
-    for j in range(i,4800,96):
-        count=count+1
-        mean2 = mean1+ ( data[j,1]-mean1 )/count
-        var1=var+( data[j,1]-mean2 )*( data[j,1]- mean1 )
-        mean1 =mean2
-        var=var1
-    m_u.append(mean)
-    error_u.append(np.sqrt(var/50))
-#print(mean)
-
-#PART B
-
-'''cov = np.zeros([30, 30])   #not in use
-for i in range (30):
-    for j in range (30):
-        for k in range (50):
-            cov[i][j]+= ( C[i+33][k]- mean[i+33] ) * ( C[j+33][k]- mean[j+33] )
-        cov[i][j]= cov[i][j]/50
-        cov1.append(cov)
-'''      
-#print (cov)  
-cor=np.zeros((30,30))
-for i in range(33,63):
-    for j in range(33,63):
-        n=0
-        for k in range(0,4800,96):
-            n= n+ ( data[i+k,1]-mean[i])*(data[k+j,1]-mean[j])
-            k1= n/ (np.sqrt(var2[i]*var2[j]))
-        cor[i-33, j-33] = k1 /50
-eigs = eigh( cor, eigvals_only=True)
-#eigenvalues,eigv = eig(cor)
-print ('Eigen values are ',eigs)
-
-'''cor = np.zeros([30,30])     #not in use 
-  
-for i in range(30):
-    for j in range (30):
-        cor[i][j] = cov[i][j]/((var2[i])**0.5 * var2[j]**(0.5))
-#print (cor[i][j])
-'''
+graphWidth = 800
+graphHeight = 600
+ModelAndScatterPlot(graphWidth, graphHeight)

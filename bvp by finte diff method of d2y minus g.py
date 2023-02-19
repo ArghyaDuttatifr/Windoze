@@ -104,3 +104,4 @@ plt.grid(True)
 plt.xlabel('x')
 plt.ylabel('y')
 plt.legend()
+# %%
