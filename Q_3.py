@@ -5,11 +5,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.linalg import eigh
 
-font = {'family': 'cursive',
-        'color':  'b',
-        'weight': 'normal',
-        'size': 14,
-        }                 # take this font idea from Debsubhra
 
 '''Importing the corr.dat file'''
 data = np.loadtxt(r'E:\1.physics TIFR\Comp. Phys\corr.dat')
